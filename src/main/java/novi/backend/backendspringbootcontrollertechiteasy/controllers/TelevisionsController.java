@@ -1,6 +1,7 @@
 package novi.backend.backendspringbootcontrollertechiteasy.controllers;
 
 import novi.backend.backendspringbootcontrollertechiteasy.Television;
+import novi.backend.backendspringbootcontrollertechiteasy.exceptions.RecordNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +24,17 @@ public ResponseEntity<Television> getTelevisionById(@PathVariable int id){
     if (id >= 0 && id < televisions.size()) {
         return ResponseEntity.ok(televisions.get(id));
     } else {
-        return ResponseEntity.notFound().build();
+        throw new RecordNotFoundException("Television with id " + id + " not found");
+    }
+}
+
+@PutMapping("/{id}")
+public ResponseEntity<Television> updateTelevision(@PathVariable int id, Television television) {
+    if (id >= 0 && id < televisions.size()) {
+        televisions.set(id, television);
+        return ResponseEntity.ok(television);
+    } else {
+       throw new RecordNotFoundException("Television with id " + id + " not found");
     }
 }
 
@@ -39,7 +50,7 @@ public ResponseEntity<Television> getTelevisionById(@PathVariable int id){
             televisions.remove(id);
             return ResponseEntity.noContent().build();
         } else {
-            return ResponseEntity.notFound().build();
+           throw new RecordNotFoundException("Television with id " + id + " not found");
         }
     }
 
