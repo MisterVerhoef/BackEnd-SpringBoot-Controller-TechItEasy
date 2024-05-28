@@ -1,6 +1,6 @@
 package novi.backend.backendspringbootcontrollertechiteasy.controllers;
 
-import novi.backend.backendspringbootcontrollertechiteasy.Television;
+import novi.backend.backendspringbootcontrollertechiteasy.models.Television;
 import novi.backend.backendspringbootcontrollertechiteasy.exceptions.RecordNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
