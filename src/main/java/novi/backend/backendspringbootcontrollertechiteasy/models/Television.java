@@ -9,7 +9,7 @@ public class Television {
 
 @Id
 @GeneratedValue
-int id;
+Long id;
 
     private String brand;
     private String model;
@@ -17,7 +17,7 @@ int id;
     private int screenSize;
     private String type;
 
-    public Television(String brand, int id, String model, int price, int screenSize, String type) {
+    public Television(String brand, Long id, String model, int price, int screenSize, String type) {
         this.brand = brand;
         this.id = id;
         this.model = model;
@@ -38,11 +38,11 @@ int id;
         this.brand = brand;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
