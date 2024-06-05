@@ -20,18 +20,18 @@ public class TelevisionsController {
 }
 
 @GetMapping("/{id}")
-public ResponseEntity<Television> getTelevisionById(@PathVariable int id){
+public ResponseEntity<Television> getTelevisionById(@PathVariable Long id){
     if (id >= 0 && id < televisions.size()) {
-        return ResponseEntity.ok(televisions.get(id));
+        return ResponseEntity.ok(televisions.get(Math.toIntExact(id)));
     } else {
         throw new RecordNotFoundException("Television with id " + id + " not found");
     }
 }
 
 @PutMapping("/{id}")
-public ResponseEntity<Television> updateTelevision(@PathVariable int id, Television television) {
+public ResponseEntity<Television> updateTelevision(@PathVariable Long id, Television television) {
     if (id >= 0 && id < televisions.size()) {
-        televisions.set(id, television);
+        televisions.set(Math.toIntExact(id), television);
         return ResponseEntity.ok(television);
     } else {
        throw new RecordNotFoundException("Television with id " + id + " not found");
@@ -45,7 +45,7 @@ public ResponseEntity<Television> updateTelevision(@PathVariable int id, Televis
 }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteTelevision(@PathVariable int id) {
+    public ResponseEntity<Object> deleteTelevision(@PathVariable Long id) {
         if (id >= 0 && id < televisions.size()) {
             televisions.remove(id);
             return ResponseEntity.noContent().build();
